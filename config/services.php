@@ -29,5 +29,10 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+    'mojagate' => [
+        'email' => env('MOJAGATE_EMAIL'),
+        'password' => env('MOJAGATE_PASSWORD'),
+        'sender_id' => env('MOJAGATE_SENDER_ID')
+    ]
 
 ];

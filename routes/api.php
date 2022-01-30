@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MojagateSmsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::group(["prefix" => "v1"], function(){
+    Route::get('/authenticate', [MojagateSmsController::class, 'authenticate'])->name('authenticate');
+    Route::get('/balance',[MojagateSmsController::class, 'checkBalance'])->name('check-balance');
+    Route::post('/sms-webhook', [MojagateSmsController::class, 'webHookCallBack'])->name('sms-webhook');
+    Route::post('/sms', [MojagateSmsController::class, 'sendSMS'])->name('send-sms');
 });
